@@ -24,7 +24,7 @@ const SignIn = () => {
       return;
     }
     axios
-      .post("http://localhost:3001/signin", user)
+      .post("https://rentify-1-oldy.onrender.com/signin", user)
       .then((res) => {
         localStorage.setItem("jwt", res.data.token);
         localStorage.setItem("_id", res.data._id);

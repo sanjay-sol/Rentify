@@ -22,7 +22,7 @@ const Home = () => {
   };
   useEffect(() => {
     axios
-      .get("http://localhost:3001/allposts", {
+      .get(`https://rentify-1-oldy.onrender.com/allposts`, {
         headers: {
           Authorization: localStorage.getItem("jwt"),
         },
@@ -36,7 +36,7 @@ const Home = () => {
     return <Navigate to="/signin" />;
   }
   const likePost = (id) => {
-    fetch(`http://localhost:3001/like`, {
+    fetch(`https://rentify-1-oldy.onrender.com/like`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const Home = () => {
       .catch((updated) => console.log(updated));
   };
   const unlikePost = async (id) => {
-    await fetch("http://localhost:3001/unlike", {
+    await fetch("https://rentify-1-oldy.onrender.com/unlike", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ const Home = () => {
   };
 
   const makeComment = async (text, postId) => {
-    await fetch("http://localhost:3001/comment", {
+    await fetch("https://rentify-1-oldy.onrender.com/comment", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -111,7 +111,7 @@ const Home = () => {
   };
 
   const deletePost = async (postid) => {
-    await fetch(`http://localhost:3001/deletepost/${postid}`, {
+    await fetch(`https://rentify-1-oldy.onrender.com/deletepost/${postid}`, {
       method: "delete",
       headers: {
         "Content-Type": "application/json",
@@ -124,17 +124,20 @@ const Home = () => {
       .catch((updated) => console.log("updated in del post", updated));
   };
   const deleteComment = async (id, commentId) => {
-    await fetch(`http://localhost:3001/deletecomment/${id}/${commentId}`, {
-      method: "delete",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("jwt"),
-      },
-      body: JSON.stringify({
-        id,
-        commentId,
-      }),
-    })
+    await fetch(
+      `https://rentify-1-oldy.onrender.com/deletecomment/${id}/${commentId}`,
+      {
+        method: "delete",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+        body: JSON.stringify({
+          id,
+          commentId,
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((updated) => {
         const newData = data.map((item) => {

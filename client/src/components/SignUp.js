@@ -39,7 +39,7 @@ const SignUp = () => {
       return;
     }
     axios
-      .post("http://localhost:3001/signup", user)
+      .post("https://rentify-1-oldy.onrender.com/signup", user)
       .then((res) => {
         localStorage.setItem("jwt", res.data.token);
         localStorage.setItem("_id", res.data._id);
