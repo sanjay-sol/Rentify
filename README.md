@@ -1,5 +1,6 @@
-# Rentify
 
+# Check Live here 
+https://rentify-ten-delta.vercel.app/
 ## Steps to run this locally ..
 # Server
 ```
