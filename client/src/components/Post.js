@@ -61,7 +61,7 @@ const Post = () => {
     };
     const token = "Bearer " + localStorage.getItem("jwt");
     await axios
-      .post("https://rentify-1-oldy.onrender.com/createpost", post, {
+      .post("http://localhost:3001/createpost", post, {
         headers: {
           Authorization: token,
         },

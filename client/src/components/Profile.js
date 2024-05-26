@@ -34,19 +34,16 @@ const Profile = () => {
   };
 
   const updateprofile = async () => {
-    await fetch(
-      `https://rentify-1-oldy.onrender.com/updateprofile/${params.id}`,
-      {
-        method: "put",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("jwt"),
-        },
-        body: JSON.stringify({
-          pic: url1,
-        }),
-      }
-    )
+    await fetch(`http://localhost:3001/updateprofile/${params.id}`, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+      body: JSON.stringify({
+        pic: url1,
+      }),
+    })
       .then(alert("Updated Secceesfully !!"))
       .then(window.location.reload())
       .catch((err) => console.log(err));
@@ -54,7 +51,7 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`https://rentify-1-oldy.onrender.com/myprofile/${params.id}`, {
+      .get(`http://localhost:3001/myprofile/${params.id}`, {
         headers: {
           Authorization: localStorage.getItem("jwt"),
         },
@@ -67,7 +64,7 @@ const Profile = () => {
   });
   useEffect(() => {
     axios
-      .get("https://rentify-1-oldy.onrender.com/myposts", {
+      .get("http://localhost:3001/myposts", {
         headers: {
           Authorization: localStorage.getItem("jwt"),
         },

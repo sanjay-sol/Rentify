@@ -12,7 +12,7 @@ const ViewProfile = () => {
 
   useEffect(() => {
     axios
-      .get(`https://rentify-1-oldy.onrender.com/viewprofile/${params.id}`, {
+      .get(`http://localhost:3001/viewprofile/${params.id}`, {
         headers: {
           Authorization: localStorage.getItem("jwt"),
         },
@@ -24,7 +24,7 @@ const ViewProfile = () => {
   }, [params.id]);
   useEffect(() => {
     axios
-      .get(`https://rentify-1-oldy.onrender.com/viewposts/${params.id}`, {
+      .get(`http://localhost:3001/viewposts/${params.id}`, {
         headers: {
           Authorization: localStorage.getItem("jwt"),
         },
@@ -33,7 +33,7 @@ const ViewProfile = () => {
       .catch((err) => console.log(err));
   }, [params.id]);
   const likePost = (id) => {
-    fetch("https://rentify-1-oldy.onrender.com/like", {
+    fetch("http://localhost:3001/like", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const ViewProfile = () => {
       .catch((updated) => console.log(updated));
   };
   const unlikePost = async (id) => {
-    await fetch("https://rentify-1-oldy.onrender.com/unlike", {
+    await fetch("http://localhost:3001/unlike", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -82,7 +82,7 @@ const ViewProfile = () => {
   };
 
   const makeComment = async (text, postId) => {
-    await fetch("https://rentify-1-oldy.onrender.com/comment", {
+    await fetch("http://localhost:3001/comment", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -107,7 +107,7 @@ const ViewProfile = () => {
       .catch((err) => console.log(err));
   };
   const deletePost = async (postid) => {
-    await fetch(`https://rentify-1-oldy.onrender.com/deletepost/${postid}`, {
+    await fetch(`http://localhost:3001/deletepost/${postid}`, {
       method: "delete",
       headers: {
         "Content-Type": "application/json",
@@ -120,20 +120,17 @@ const ViewProfile = () => {
       .catch((updated) => console.log("updated in del post", updated));
   };
   const deleteComment = async (id, commentId) => {
-    await fetch(
-      `https://rentify-1-oldy.onrender.com/deletecomment/${id}/${commentId}`,
-      {
-        method: "delete",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("jwt"),
-        },
-        body: JSON.stringify({
-          id,
-          commentId,
-        }),
-      }
-    )
+    await fetch(`http://localhost:3001/deletecomment/${id}/${commentId}`, {
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+      body: JSON.stringify({
+        id,
+        commentId,
+      }),
+    })
       .then((res) => res.json())
       .then((updated) => {
         const newData = data2.map((item) => {
